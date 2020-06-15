@@ -15,6 +15,12 @@ export default {
     return {
       checked: true
     }
-  }
+  },
+  beforeCreate() {
+    console.log("Wywołanie metody beforeCreate " + this.checked);
+  },
+  created() {
+    console.log("Wywołanie metody created " + this.checked);
+  },
 }
 </script>
