@@ -33,6 +33,16 @@ export default {
   },
   mounted() {
     this.$el.dataset.names.split(",").forEach(name => this.names.push(name));
+  },
+  beforeUpdate() {
+    console.log(`Wywołano metodę beforeUpdate. Stan zaznaczenia: ${this.checked}`
+      + ` Imię: ${this.names[0]} Element listy: `
+      + this.$el.getElementsByTagName("li").length);
+  },
+  updated() {
+    console.log(`Wywołano metodę updated. Stan zaznaczenia: ${this.checked}`
+      + ` Imię: ${this.names[0]} Element listy: `
+      + this.$el.getElementsByTagName("li").length);
   }
 }
 </script>
