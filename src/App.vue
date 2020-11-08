@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import Vue from "vue";
 export default {
   name: 'App',
   data: function () {
@@ -53,6 +54,7 @@ export default {
     doChange() {
       this.checked = !this.checked;
       this.names.reverse();
+      Vue.nextTick(() => console.log('Wykonano wywołanie zwrotne'));
     }
   }
 }
