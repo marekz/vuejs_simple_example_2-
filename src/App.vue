@@ -13,6 +13,11 @@
         </li>
       </ul>
     </div>
+    <div class="text-white center my-2">
+      <button class="btn btn-light" v-on:click="doChange">
+        Zmień
+      </button>
+    </div>
   </div>
 </template>
 
@@ -43,6 +48,12 @@ export default {
     console.log(`Wywołano metodę updated. Stan zaznaczenia: ${this.checked}`
       + ` Imię: ${this.names[0]} Element listy: `
       + this.$el.getElementsByTagName("li").length);
+  },
+  methods: {
+    doChange() {
+      this.checked = !this.checked;
+      this.names.reverse();
+    }
   }
 }
 </script>
