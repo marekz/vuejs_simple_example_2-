@@ -56,6 +56,11 @@ export default {
       this.names.reverse();
       Vue.nextTick(() => console.log('Wykonano wywołanie zwrotne'));
     }
+  },
+  watch: {
+    checked: function (newValue, oldValue) {
+      console.log(`Sprawdzono obserwatora, Stara wartość: ${oldValue}, Nowa wartość: ${newValue}`);
+    }
   }
 }
 </script>
