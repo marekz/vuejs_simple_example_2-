@@ -5,6 +5,9 @@
       <label>Pole checkbox</label>
     </div>
     Stan zaznaczenia: {{ checked }}
+    <div class="bg-info p-2" v-if="checked">
+      <message-display></message-display>
+    </div>
     <div class="bg-info p-2">
       Imiona:
       <ul>
@@ -22,9 +25,11 @@
 </template>
 
 <script>
+import MessageDisplay from "./components/MessageDisplay"
 import Vue from "vue";
 export default {
   name: 'App',
+  components: { MessageDisplay },
   data: function () {
     return {
       checked: true,
