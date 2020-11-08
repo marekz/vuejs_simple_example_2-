@@ -5,6 +5,14 @@
       <label>Pole checkbox</label>
     </div>
     Stan zaznaczenia: {{ checked }}
+    <div class="bg-info p-2">
+      Imiona:
+      <ul>
+        <li v-for="name in names" v-bind:key="name">
+          {{ name }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -13,7 +21,8 @@ export default {
   name: 'App',
   data: function () {
     return {
-      checked: true
+      checked: true,
+      names: []
     }
   },
   beforeCreate() {
@@ -22,5 +31,8 @@ export default {
   created() {
     console.log("Wywołanie metody created " + this.checked);
   },
+  mounted() {
+    this.$el.dataset.names.split(",").forEach(name => this.names.push(name));
+  }
 }
 </script>
