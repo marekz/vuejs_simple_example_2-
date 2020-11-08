@@ -6,6 +6,9 @@
     <button class="btn btn-secondary" v-on:click="handleClick">
       Zwiększ
     </button>
+    <button class="btn btn-secondary" v-on:click="generateError">
+      Wygeneruj błąd
+    </button>
   </div>
 </template>
 
@@ -13,7 +16,8 @@
   export default {
     data: function () {
       return {
-        counter: 0
+        counter_base: 0,
+        generate_error: false
       }
     },
     created: function() {
@@ -27,7 +31,19 @@
     },
     methods: {
       handleClick() {
-        this.counter++
+        this.counter_base++
+      },
+      generateError() {
+        this.generate_error = true;
+      }
+    },
+    computed: {
+      counter() {
+        if (this.generate_error) {
+          throw "Mój błąd w komponencie";
+        } else {
+          return this.counter_base;
+        }
       }
     }
   }
