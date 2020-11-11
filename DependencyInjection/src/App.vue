@@ -36,7 +36,8 @@ export default {
   },
   provide: function() {
     return {
-      colors: this.reactiveColors
+      colors: this.reactiveColors,
+      labelFormatter: (value) => `Wprowadź ${value}: `
     }
   },
   methods: {
