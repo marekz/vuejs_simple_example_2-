@@ -46,13 +46,12 @@ export default {
   },
   methods: {
     createNew() {
+      this.eventBus.$emit("create");
     },
     editProduct(product) {
+      this.eventBus.$emit("edit", product);
     }
-  }
+  },
+  inject: ["eventBus"]
 }
 </script>
-
-<style scoped>
-
-</style>
