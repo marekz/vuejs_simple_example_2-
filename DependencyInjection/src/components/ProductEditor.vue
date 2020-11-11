@@ -45,8 +45,8 @@ export default {
       };
     },
     save() {
-      // TODO - przetwórz zmieniony lub utworzony produkt
-      console.log(`Zakońćzono edycję: ${JSON.stringify(this.product)}`);
+      this.eventBus.$emit("complete", this.product);
+      console.log(`Zakończono edycję: ${JSON.stringify(this.product)}`);
       this.startCreate();
     },
     cancel() {
@@ -54,13 +54,10 @@ export default {
       this.editing = false;
     }
   },
-  // provide: function () {
-  //   return {
-  //     colors: {
-  //       bg: "ng-light",
-  //       text: "text-danger"
-  //     }
-  //   }
-  // }
+  inject: ["eventBus"],
+  created() {
+    this.eventBus.$on("create", this.startCreate);
+    this.eventBus.$on("edit", this.startEdit);
+  }
 }
 </script>

@@ -18,7 +18,7 @@
     </tbody>
   </table>
   <div class="text-center">
-    <button class="btn btn-primary" v-on:click="createView">
+    <button class="btn btn-primary" v-on:click="createNew">
       Utwórz nowy
     </button>
   </div>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import Vue from "vue";
 export default {
   name: "ProductDisplay",
   data: function () {
@@ -50,8 +51,19 @@ export default {
     },
     editProduct(product) {
       this.eventBus.$emit("edit", product);
+    },
+    processComplete(product) {
+      let index = this.products.findIndex(p => p.id == product.id);
+      if (index == -1) {
+        this.products.push(product);
+      } else {
+        Vue.set(this.products, index, product);
+      }
     }
   },
-  inject: ["eventBus"]
+  inject: ["eventBus"],
+  created() {
+    this.eventBus.$on("complete", this.processComplete);
+  }
 }
 </script>
