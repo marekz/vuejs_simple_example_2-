@@ -54,13 +54,13 @@ export default {
       this.editing = false;
     }
   },
-  provide: function () {
-    return {
-      colors: {
-        bg: "ng-light",
-        text: "text-danger"
-      }
-    }
-  }
+  // provide: function () {
+  //   return {
+  //     colors: {
+  //       bg: "ng-light",
+  //       text: "text-danger"
+  //     }
+  //   }
+  // }
 }
 </script>
