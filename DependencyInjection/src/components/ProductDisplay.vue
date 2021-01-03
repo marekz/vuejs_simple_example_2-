@@ -2,18 +2,22 @@
 <div>
   <table class="table table-sm table-striped table-bordered">
     <tr>
-      <th>ID</th><th>Nazwa</th><th>Cena</th><th></th>
+      <th>ID</th><th>Nazwa</th><th>Kategoria</th><th>Cena</th><th></th>
     </tr>
     <tbody>
       <tr v-for="p in products" v-bind:key="p.id">
         <td>{{ p.id }}</td>
         <td>{{ p.name }}</td>
+        <td>{{ p.category }}</td>
         <td>{{ p.price | currency }}</td>
         <td>
           <button class="btn btn-sm btn-primary" v-on:click="editProduct(p)">
             Edytuj
           </button>
         </td>
+      </tr>
+      <tr v-if="products.length == 0">
+        <td colspan="5" class="text-center">Brak danych</td>
       </tr>
     </tbody>
   </table>
@@ -28,21 +32,9 @@
 <script>
 import Vue from "vue";
 export default {
-  name: "ProductDisplay",
   data: function () {
     return {
-      products: [
-        { id: 1, name: "Kajak", price: 275 },
-        { id: 2, name: "Kamizelka ratunkowa", price: 46.95 },
-        { id: 3, name: "Piłka nożna", price: 19.50 },
-        { id: 4, name: "Chorągiewki narożne", price: 39.95 },
-        { id: 5, name: "Stadion", price: 79500 }
-      ]
-    }
-  },
-  filters: {
-    currency(value) {
-      return `${value.toFixed(2)} PLN`;
+      products: []
     }
   },
   methods: {
@@ -51,19 +43,8 @@ export default {
     },
     editProduct(product) {
       this.eventBus.$emit("edit", product);
-    },
-    processComplete(product) {
-      let index = this.products.findIndex(p => p.id == product.id);
-      if (index == -1) {
-        this.products.push(product);
-      } else {
-        Vue.set(this.products, index, product);
-      }
     }
   },
-  inject: ["eventBus"],
-  created() {
-    this.eventBus.$on("complete", this.processComplete);
-  }
+  inject: ["eventBus"]
 }
 </script>
