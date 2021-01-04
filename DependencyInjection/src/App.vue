@@ -1,6 +1,9 @@
 <template>
   <div class="container-fluid">
     <div class="row">
+      <div class="col"><error-display /></div>
+    </div>
+    <div class="row">
       <div class="col-8 m-3">
         <product-display/>
       </div>
@@ -14,12 +17,14 @@
 <script>
 import ProductDisplay from './components/ProductDisplay';
 import ProductEditor from "./components/ProductEditor";
+import ErrorDisplay from "./components/ErrorDisplay";
 
 export default {
   name: 'App',
   components: {
     ProductDisplay,
-    ProductEditor
+    ProductEditor,
+    ErrorDisplay
   },
   filters: {
     currency(value, places) {
