@@ -31,8 +31,6 @@
 
 <script>
 import Vue from "vue";
-import Axios from "axios";
-const baseUrl = "http://localhost:3500/products/";
 export default {
   data: function () {
     return {
@@ -51,7 +49,7 @@ export default {
       this.products.push(...newProducts);
     }
   },
-  inject: ["eventBus"],
+  inject: ["eventBus", "restDataSource"],
   // created() {
   //   Axios.get(baseUrl).then(resp => {
   //     console.log(`Odpowiedź HTTP: ${resp.status}, ${resp.statusText}`);
@@ -60,8 +58,7 @@ export default {
   //   });
   // }
   async created() {
-    let data = (await Axios.get(baseUrl)).data;
-    this.processProducts(data);
+    this.processProducts(await this.restDataSource.getProducts());
   }
 }
 </script>

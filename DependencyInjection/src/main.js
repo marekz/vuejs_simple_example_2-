@@ -10,7 +10,7 @@ new Vue({
   provide: function () {
     return {
       eventBus: new Vue(),
-      restoreDataSource: new RestDataSource()
+      restDataSource: new RestDataSource()
     }
   }
 }).$mount('#app')
