@@ -7,10 +7,13 @@ Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
+  data: {
+    eventBus: new Vue()
+  },
   provide: function () {
     return {
-      eventBus: new Vue(),
-      restDataSource: new RestDataSource()
+      eventBus: this.eventBus,
+      restDataSource: new RestDataSource(this.eventBus)
     }
   }
 }).$mount('#app')
