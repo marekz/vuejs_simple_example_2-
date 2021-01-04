@@ -2,19 +2,19 @@
   <div>
     <div class="form-group">
       <label>ID</label>
-      <input class="form-controll" v-model="product.id" />
+      <input class="form-control" v-model="product.id" />
     </div>
     <div class="form-group">
       <label>Nazwa</label>
-      <input class="form-controll" v-model="product.name" />
+      <input class="form-control" v-model="product.name" />
     </div>
     <div class="form-group">
       <label>Kategoria</label>
-      <input class="form-controll" v-model="product.category" />
+      <input class="form-control" v-model="product.category" />
     </div>
     <div class="form-group">
       <label>Cena</label>
-      <input class="form-controll" v-model.number="product.price" />
+      <input class="form-control" v-model.number="product.price" />
     </div>
     <div class="text-center">
       <button class="btn btn-primary" v-on:click="save">

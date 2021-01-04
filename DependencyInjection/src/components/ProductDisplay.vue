@@ -16,7 +16,7 @@
           </button>
         </td>
       </tr>
-      <tr v-if="products.length == 0">
+      <tr v-if="products.length === 0">
         <td colspan="5" class="text-center">Brak danych</td>
       </tr>
     </tbody>
@@ -31,6 +31,8 @@
 
 <script>
 import Vue from "vue";
+import Axios from "axios";
+const baseUrl = "http://localhost:3500/products/";
 export default {
   data: function () {
     return {
@@ -43,8 +45,23 @@ export default {
     },
     editProduct(product) {
       this.eventBus.$emit("edit", product);
+    },
+    processProducts(newProducts) {
+      this.products.splice(0);
+      this.products.push(...newProducts);
     }
   },
-  inject: ["eventBus"]
+  inject: ["eventBus"],
+  // created() {
+  //   Axios.get(baseUrl).then(resp => {
+  //     console.log(`Odpowiedź HTTP: ${resp.status}, ${resp.statusText}`);
+  //     console.log(`Dane odpowiedzi: ${resp.data.length} elementów`);
+  //     this.processProducts(resp.data);
+  //   });
+  // }
+  async created() {
+    let data = (await Axios.get(baseUrl)).data;
+    this.processProducts(data);
+  }
 }
 </script>

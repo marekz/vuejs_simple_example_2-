@@ -20,6 +20,16 @@ export default {
   components: {
     ProductDisplay,
     ProductEditor
+  },
+  filters: {
+    currency(value, places) {
+      return new Intl.NumberFormat("pl-PL",
+          {style: "currency", currency: "PLN",
+          minimumFractionDigits: places || 2,
+          maximumFractionDigits: places || 2
+          }
+      ).format(value)
+    }
   }
 }
 </script>
