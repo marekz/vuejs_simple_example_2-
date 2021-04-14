@@ -40,15 +40,22 @@
 
 <script>
 export default {
-  data: function () {
-    return {
-      products: []
+  // data: function () {
+  //   return {
+  //     products: []
+  //   }
+  // },
+  computed: {
+    products() {
+      return this.$store.state.products;
     }
   },
   methods: {
     createNew() {},
     editProduct(product) {},
-    deleteProduct(product) {}
+    deleteProduct(product) {
+      this.$store.commit("deleteProduct", product);
+    }
   }
 }
 </script>

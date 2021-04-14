@@ -34,7 +34,10 @@ export default {
     }
   },
   methods: {
-    save() {},
+    save() {
+      this.$store.commit("saveProducts", this.product);
+      this.product = {};
+    },
     cancel() {}
   }
 }
