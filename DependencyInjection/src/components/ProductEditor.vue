@@ -34,32 +34,8 @@ export default {
     }
   },
   methods: {
-    startEdit(product) {
-      this.editing = true;
-      this.product = {
-        id: product.id,
-        name: product.name,
-        category: product.category,
-        price: product.price
-      };
-    },
-    startCreate() {
-      this.editing = false;
-      this.product = {};
-    },
-    save() {
-      this.eventBus.$emit("complete", this.product);
-      this.startCreate();
-    },
-    cancel() {
-      this.product = {};
-      this.editing = false;
-    }
-  },
-  inject: ["eventBus"],
-  created() {
-    this.eventBus.$on("create", this.startCreate);
-    this.eventBus.$on("edit", this.startEdit);
+    save() {},
+    cancel() {}
   }
 }
 </script>

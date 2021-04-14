@@ -15,11 +15,14 @@
         <td>{{ p.category }}</td>
         <td>{{ p.price }}</td>
         <td>
-          <button class="btn btn-sm btn-primary" v-on:click="editProduct(p)">
+          <button class="btn btn-sm btn-primary"
+                  v-on:click="editProduct(p)">
             Edytuj
           </button>
           <button class="btn btn-sm btn-danger ml-1"
-            v-on:click="deleteProduct(p)">Usuń</button>
+            v-on:click="deleteProduct(p)">
+            Usuń
+          </button>
         </td>
       </tr>
       <tr v-if="products.length === 0">
@@ -36,7 +39,6 @@
 </template>
 
 <script>
-import Vue from "vue";
 export default {
   data: function () {
     return {
@@ -44,36 +46,9 @@ export default {
     }
   },
   methods: {
-    createNew() {
-      this.eventBus.$emit("create");
-    },
-    editProduct(product) {
-      this.eventBus.$emit("edit", product);
-    },
-    async deleteProduct(product) {
-      await this.restDataSource.deleteProduct(product);
-      let index = this.products.findIndex(p => p.id === product.id);
-      this.products.splice(index, 1);
-    },
-    processProducts(newProducts) {
-      this.products.splice(0);
-      this.products.push(...newProducts);
-    },
-    async processComplete(product) {
-      let index = this.products.findIndex(p => p.id === product.id);
-      if (index === -1) {
-        await this.restDataSource.saveProduct(product);
-        this.products.push(product);
-      } else {
-        await this.restDataSource.updateProduct(product);
-        Vue.set(this.products, index, product);
-      }
-    }
-  },
-  inject: ["eventBus", "restDataSource"],
-  async created() {
-    this.processProducts(await this.restDataSource.getProducts());
-    this.eventBus.$on("complete", this.processComplete);
+    createNew() {},
+    editProduct(product) {},
+    deleteProduct(product) {}
   }
 }
 </script>
