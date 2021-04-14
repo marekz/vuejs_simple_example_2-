@@ -40,5 +40,13 @@ export default new Vuex.Store({
             let index = currentState.products.findIndex(p => p.id == product.id);
             currentState.products.splice(index, 1);
         }
+    },
+    getters: {
+        orderProducts(state) {
+            return state.products.concat().sort((p1, p2) => p2.price - p1.price);
+        },
+        filteredProducts(state, getters) {
+            return getters.orderProducts.filter(p => p.price > 150);
+        }
     }
 })
