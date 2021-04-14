@@ -46,7 +46,7 @@ export default new Vuex.Store({
             return state.products.concat().sort((p1, p2) => p2.price - p1.price);
         },
         filteredProducts(state, getters) {
-            return getters.orderProducts.filter(p => p.price > 150);
+            return (amount) => getters.orderProducts.filter(p => p.price > amount);
         }
     }
 })

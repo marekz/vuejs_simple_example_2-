@@ -47,7 +47,7 @@ export default {
   // },
   computed: {
     products() {
-      return this.$store.getters.filteredProducts;
+      return this.$store.getters.filteredProducts(100);
     }
   },
   methods: {
