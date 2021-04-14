@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { RestDataSource } from "./restDataSource";
+import store from "./store";
 
 Vue.config.productionTip = false
 
@@ -10,6 +11,7 @@ new Vue({
   data: {
     eventBus: new Vue()
   },
+  store,
   provide: function () {
     return {
       eventBus: this.eventBus,
