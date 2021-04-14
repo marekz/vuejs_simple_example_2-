@@ -47,15 +47,18 @@ export default {
   // },
   computed: {
     products() {
-      return this.$store.getters.filteredProducts(100);
+      return this.$store.state.products;
     }
   },
   methods: {
     createNew() {},
     editProduct(product) {},
     deleteProduct(product) {
-      this.$store.commit("deleteProduct", product);
+      this.$store.dispatch("deleteProductAction", product);
     }
+  },
+  created() {
+    this.$store.dispatch("getProductsActions");
   }
 }
 </script>
