@@ -51,8 +51,12 @@ export default {
     }
   },
   methods: {
-    createNew() {},
-    editProduct(product) {},
+    createNew() {
+      this.$store.commit("selectProduct");
+    },
+    editProduct(product) {
+      this.$store.commit("selectProduct", product);
+    },
     deleteProduct(product) {
       this.$store.dispatch("deleteProductAction", product);
     }

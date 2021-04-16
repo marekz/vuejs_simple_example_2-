@@ -9,7 +9,8 @@ const baseUrl = "http://localhost:3500/products/";
 export default new Vuex.Store({
     strict: true,
     state: {
-        products: []
+        products: [],
+        selectedProduct: null
     },
     mutations: {
         saveProducts(currentState, product) {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
         deleteProduct(currentState, product) {
             let index = currentState.products.findIndex(p => p.id === product.id);
             currentState.products.splice(index, 1);
+        },
+        selectProduct(currentState, product) {
+            currentState.selectedProduct = product;
         }
     },
     getters: {
