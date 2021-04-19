@@ -31,7 +31,7 @@
     </tbody>
   </table>
   <div class="text-center">
-    <button class="btn btn-primary" v-on:click="createNew">
+    <button class="btn btn-primary" v-on:click="createNew()">
       Utwórz nowy
     </button>
   </div>
@@ -39,30 +39,27 @@
 </template>
 
 <script>
+import {
+  mapState,
+    mapMutations,
+    mapActions
+} from "vuex";
 export default {
-  // data: function () {
-  //   return {
-  //     products: []
-  //   }
-  // },
   computed: {
-    products() {
-      return this.$store.state.products;
-    }
+    ...mapState(["products"])
   },
   methods: {
-    createNew() {
-      this.$store.commit("selectProduct");
-    },
-    editProduct(product) {
-      this.$store.commit("selectProduct", product);
-    },
-    deleteProduct(product) {
-      this.$store.dispatch("deleteProductAction", product);
-    }
+    ...mapMutations({
+      editProducts: "selectProduct",
+      createNew: "selectProduct",
+    }),
+    ...mapActions({
+      getProducts: "getProductsActions",
+      deleteProducts: "deleteProductAction"
+    })
   },
   created() {
-    this.$store.dispatch("getProductsActions");
+    this.getProducts();
   }
 }
 </script>
