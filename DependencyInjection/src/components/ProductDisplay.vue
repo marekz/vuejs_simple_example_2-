@@ -52,14 +52,20 @@ export default {
   computed: {
     ...mapState(["products"]),
     ...mapState({
-      useStripedTable: state => state.prefs.stripedTable
+      striped: state => state.prefs.stripedTable
     }),
-    ...mapGetters(["tableClass","editClass","deleteClass"])
+    ...mapGetters({
+      tableClass: "prefs/tableClass",
+      editClass: "prefs/editClass",
+      deleteClass: "prefs/deleteClass"
+    })
   },
   methods: {
     ...mapMutations({
       editProduct: "selectProduct",
       createNew: "selectProduct",
+      setEdityButtonColor: "prefs/setEditButtonColor",
+      setDeleteButtonColor: "prefs/setDeleteButtonColor"
     }),
     ...mapMutations(["setEditButtonColor","setDeleteButtonColor"]),
     ...mapActions({
