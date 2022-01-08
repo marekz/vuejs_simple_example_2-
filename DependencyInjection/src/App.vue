@@ -1,22 +1,6 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col text-center m-2">
-        <div class="btn-group btn-group-toggle">
-          <label class="btn btn-info"
-                 v-bind:class="{active: (selected == 'table') }">
-            <input type="radio" v-model="selected" value="table" />
-            Tabela
-          </label>
-          <label class="btn btn-info"
-                 v-bind:class="{active: (selected == 'editor') }">
-            <input type="radio" v-model="selected" value="editor" />
-            Edytor
-          </label>
-        </div>
-      </div>
-    </div>
-    <div class="row">
       <div class="col">
         <component v-bind:is="selectedComponent"></component>
       </div>
@@ -28,6 +12,7 @@
 import ProductDisplay from './components/ProductDisplay';
 import ProductEditor from "./components/ProductEditor";
 import ErrorDisplay from "./components/ErrorDisplay";
+import { mapState } from "vuex";
 
 export default {
   name: 'App',
@@ -39,12 +24,10 @@ export default {
   created() {
     this.$store.dispatch("getProductsActions");
   },
-  data: function() {
-    return {
-      selected: "table"
-    }
-  },
   computed: {
+    ...mapState({
+      selected: state => state.nav.selected
+    }),
     selectedComponent() {
       return this.selected == "table" ? ProductDisplay : ProductEditor;
     }
