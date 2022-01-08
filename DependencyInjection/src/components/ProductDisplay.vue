@@ -1,6 +1,7 @@
 <template>
 <div>
-  <table class="table table-sm table-striped table-bordered">
+  <table class="table table-sm table-bordered"
+         v-bind:class="'table-striped' == useStripedTable">
     <tr>
       <th>ID</th>
       <th>Nazwa</th>
@@ -15,11 +16,13 @@
         <td>{{ p.category }}</td>
         <td>{{ p.price }}</td>
         <td>
-          <button class="btn btn-sm btn-primary"
+          <button class="btn btn-sm"
+                  v-bind:class="editClass"
                   v-on:click="editProduct(p)">
             Edytuj
           </button>
-          <button class="btn btn-sm btn-danger ml-1"
+          <button class="btn btn-sm"
+            v-bind:class="deleteClass"
             v-on:click="deleteProduct(p)">
             Usuń
           </button>
@@ -40,19 +43,25 @@
 
 <script>
 import {
-  mapState,
+    mapState,
     mapMutations,
-    mapActions
+    mapActions,
+    mapGetters
 } from "vuex";
 export default {
   computed: {
-    ...mapState(["products"])
+    ...mapState(["products"]),
+    ...mapState({
+      useStripedTable: state => state.prefs.stripedTable
+    }),
+    ...mapGetters(["tableClass","editClass","deleteClass"])
   },
   methods: {
     ...mapMutations({
-      editProducts: "selectProduct",
+      editProduct: "selectProduct",
       createNew: "selectProduct",
     }),
+    ...mapMutations(["setEditButtonColor","setDeleteButtonColor"]),
     ...mapActions({
       getProducts: "getProductsActions",
       deleteProducts: "deleteProductAction"
@@ -60,6 +69,8 @@ export default {
   },
   created() {
     this.getProducts();
+    this.setEditButtonColor(false);
+    this.setDeleteButtonColor(false)
   }
 }
 </script>
