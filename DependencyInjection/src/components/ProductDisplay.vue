@@ -1,7 +1,7 @@
 <template>
 <div>
   <table class="table table-sm table-bordered"
-         v-bind:class="'table-striped' == useStripedTable">
+         v-bind:class="'table-striped' == striped">
     <tr>
       <th>ID</th>
       <th>Nazwa</th>
@@ -64,17 +64,16 @@ export default {
     ...mapMutations({
       editProduct: "selectProduct",
       createNew: "selectProduct",
-      setEdityButtonColor: "prefs/setEditButtonColor",
+      setEditButtonColor: "prefs/setEditButtonColor",
       setDeleteButtonColor: "prefs/setDeleteButtonColor"
     }),
-    ...mapMutations(["setEditButtonColor","setDeleteButtonColor"]),
     ...mapActions({
-      getProducts: "getProductsActions",
+      // getProducts: "getProductsActions",
       deleteProducts: "deleteProductAction"
     })
   },
   created() {
-    this.getProducts();
+    // this.getProducts();
     this.setEditButtonColor(false);
     this.setDeleteButtonColor(false)
   }
