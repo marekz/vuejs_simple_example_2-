@@ -1,5 +1,17 @@
 <template>
   <div class="container-fluid">
+    <div class="col">
+      <div class="col text-center m-2">
+        <button class="btn btn-primary"
+                v-on:click="selectComponent('table')">
+          Funkcje standardowe
+        </button>
+        <button class="btn btn-success"
+                v-on:click="selectComponent('summary')">
+          Funkcje zaawansowane
+        </button>
+      </div>
+    </div>
     <div class="row">
       <div class="col">
         <component v-bind:is="selectedComponent"></component>
@@ -12,24 +24,44 @@
 import ProductDisplay from './components/ProductDisplay';
 import ProductEditor from "./components/ProductEditor";
 import ErrorDisplay from "./components/ErrorDisplay";
-import { mapState } from "vuex";
+const DataSummary = () => import("./components/DataSummary");
+
+import {
+  mapState,
+  mapMutations
+} from "vuex";
 
 export default {
   name: 'App',
   components: {
     ProductDisplay,
     ProductEditor,
-    ErrorDisplay
+    ErrorDisplay,
+    DataSummary
   },
   created() {
-    this.$store.dispatch("getProductsActions");
+    this.$store.dispatch("getProductsAction");
+  },
+  methods: {
+    ...mapMutations({
+      selectComponent: "nav/selectComponent"
+    })
   },
   computed: {
     ...mapState({
       selected: state => state.nav.selected
     }),
     selectedComponent() {
-      return this.selected == "table" ? ProductDisplay : ProductEditor;
+      switch (this.selected) {
+        case "table":
+          return ProductDisplay;
+        case "editor":
+          return ProductEditor;
+        case "summary":
+          return DataSummary;
+      }
+
+      return ProductDisplay;
     }
   }
 }

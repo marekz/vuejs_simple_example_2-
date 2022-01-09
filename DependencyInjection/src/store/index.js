@@ -44,7 +44,7 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        async getProductsActions(context) {
+        async getProductsAction(context) {
             (await Axios.get(baseUrl)).data
                 .forEach(p => context.commit("saveProducts", p));
         },

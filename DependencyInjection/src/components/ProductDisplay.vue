@@ -76,7 +76,7 @@ export default {
       setDeleteButtonColor: "prefs/setDeleteButtonColor"
     }),
     ...mapActions({
-      // getProducts: "getProductsActions",
+      // getProducts: "getProductsAction",
       deleteProducts: "deleteProductAction"
     })
   },
