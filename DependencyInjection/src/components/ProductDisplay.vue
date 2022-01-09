@@ -63,15 +63,17 @@ export default {
   methods: {
     editProduct(product) {
       this.selectProduct(product)
-      this.selectComponent("editor");
+      // this.selectComponent("editor");
+      this.$router.push("/edit")
     },
     createNew() {
       this.selectProduct();
-      this.selectComponent("editor");
+      // this.selectComponent("editor");
+      this.$router.push("/edit")
     },
     ...mapMutations({
       selectProduct: "selectProduct",
-      selectComponent: "nav/selectComponent",
+      // selectComponent: "nav/selectComponent",
       setEditButtonColor: "prefs/setEditButtonColor",
       setDeleteButtonColor: "prefs/setDeleteButtonColor"
     }),
