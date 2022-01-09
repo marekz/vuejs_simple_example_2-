@@ -20,7 +20,7 @@
       <button class="btn btn-primary" v-on:click="save">
         {{ editing ? "Zapisz" : "Utwórz" }}
       </button>
-      <button class="btn btn-secondary" v-on:click="cancel">Anuluj</button>
+      <router-link to="/" class="btn btn-secondary">Anuluj</router-link>
     </div>
   </div>
 </template>
@@ -37,13 +37,15 @@ export default {
   methods: {
     async save() {
       await this.$store.dispatch("saveProductAction", this.product);
-      this.$store.commit("nav/selectComponent", "table");
+      // this.$store.commit("nav/selectComponent", "table");
+      this.$router.push("/");
       this.product = {};
     },
-    cancel() {
-      this.$store.commit("selectProduct");
-      this.$store.commit("nav/selectComponent", "table")
-    },
+    // cancel() {
+    //   this.$store.commit("selectProduct");
+    //   this.$store.commit("nav/selectComponent", "table")
+    //   this.$router.push("/");
+    // },
     selectProduct(selectedProduct) {
       if (selectedProduct == null) {
         this.editing = false;
