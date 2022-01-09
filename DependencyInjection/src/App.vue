@@ -24,7 +24,12 @@
 import ProductDisplay from './components/ProductDisplay';
 import ProductEditor from "./components/ProductEditor";
 import ErrorDisplay from "./components/ErrorDisplay";
-const DataSummary = () => import("./components/DataSummary");
+import LoadingMessage from "./components/LoadingMessage";
+const DataSummary = () => ({
+  component: import(/* webpackChunkName: "advanced" */"./components/DataSummary"),
+  loading: LoadingMessage,
+  delay: 100
+});
 
 import {
   mapState,
