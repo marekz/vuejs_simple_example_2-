@@ -16,7 +16,8 @@
         <td>{{ p.category }}</td>
         <td>{{ p.price }}</td>
         <td>
-          <router-link v-bind:to="'/edit/'  + p.id "
+          <router-link v-bind:to="{ name: 'editor',
+                          params: { op: 'edit', id: p.id}}"
                        v-bind:class="editClass"
                        class="btn btn-sm">
             Edytuj
@@ -34,7 +35,8 @@
     </tbody>
   </table>
   <div class="text-center">
-    <router-link to="/create" class="btn btn-primary">
+    <router-link v-bind:to="{name: 'editor', params: { op: 'create'}}"
+                 class="btn btn-primary">
       Utwórz nowy
     </router-link>
   </div>
@@ -79,7 +81,7 @@ export default {
     }),
     ...mapActions({
       // getProducts: "getProductsAction",
-      deleteProducts: "deleteProductAction"
+      deleteProduct: "deleteProductAction"
     })
   },
   created() {

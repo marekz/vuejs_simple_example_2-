@@ -23,7 +23,7 @@
       <button class="btn btn-primary" v-on:click="save">
         {{ editing ? "Zapisz" : "Utwórz" }}
       </button>
-      <router-link to="/" class="btn btn-secondary">Anuluj</router-link>
+      <router-link v-bind:to="{name: 'table'}" class="btn btn-secondary">Anuluj</router-link>
     </div>
   </div>
 </template>
@@ -40,7 +40,9 @@ export default {
   methods: {
     async save() {
       await this.$store.dispatch("saveProductAction", this.product);
-      this.$router.push("/");
+      this.$router.push({
+        name: "table"
+      });
       this.product = {};
     },
     selectProduct(selectedProduct) {

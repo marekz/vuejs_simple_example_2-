@@ -8,16 +8,14 @@ export default new VueRouter({
     mode: "history",
     routes: [
         {
+            name: "table",
             path: "/",
             component: ProductDisplay,
             alias: "/list"
         },
         {
+            name: "editor",
             path: "/:op(create|edit)/:id(\\d+)?",
-            component: ProductEditor
-        },
-        {
-            path: "/create",
             component: ProductEditor
         },
         {
