@@ -16,7 +16,8 @@
         <td>{{ p.category }}</td>
         <td>{{ p.price }}</td>
         <td>
-          <router-link to="/edit" v-bind:class="editClass"
+          <router-link v-bind:to="'/edit/'  + p.id "
+                       v-bind:class="editClass"
                        class="btn btn-sm">
             Edytuj
           </router-link>

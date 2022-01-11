@@ -48,6 +48,10 @@ export default {
         this.editing = false;
         this.product = {};
       } else {
+        let productId = this.$route.params.id;
+        let selectedProduct = this.$store.state.products.find(
+            p => p.id == productId
+        );
         this.product = {};
         Object.assign(this.product, selectedProduct);
         this.editing = true;
@@ -55,9 +59,10 @@ export default {
     }
   },
   created() {
-    unwatcher = this.$store.watch(state =>
-      state.selectedProduct, this.selectProduct);
-    this.selectProduct(this.$store.state.selectedProduct);
+    unwatcher = this.$store.watch(
+        state => state.products,
+        this.selectProduct);
+    this.selectProduct();
   },
   beforeDestroy() {
     unwatcher();
