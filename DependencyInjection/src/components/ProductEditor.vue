@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h3 class="btn-primary text-center text-white p-2">
+      {{ editing ? "Edytuj" : "Utwórz" }}
+    </h3>
     <div class="form-group">
       <label>ID</label>
       <input class="form-control" v-model="product.id" />
@@ -37,23 +40,17 @@ export default {
   methods: {
     async save() {
       await this.$store.dispatch("saveProductAction", this.product);
-      // this.$store.commit("nav/selectComponent", "table");
       this.$router.push("/");
       this.product = {};
     },
-    // cancel() {
-    //   this.$store.commit("selectProduct");
-    //   this.$store.commit("nav/selectComponent", "table")
-    //   this.$router.push("/");
-    // },
     selectProduct(selectedProduct) {
-      if (selectedProduct == null) {
+      if (this.$route.path == "/create") {
         this.editing = false;
         this.product = {};
       } else {
-        this.editing = true;
         this.product = {};
         Object.assign(this.product, selectedProduct);
+        this.editing = true;
       }
     }
   },

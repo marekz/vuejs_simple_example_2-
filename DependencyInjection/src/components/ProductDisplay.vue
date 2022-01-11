@@ -16,11 +16,10 @@
         <td>{{ p.category }}</td>
         <td>{{ p.price }}</td>
         <td>
-          <button class="btn btn-sm"
-                  v-bind:class="editClass"
-                  v-on:click="editProduct(p)">
+          <router-link to="/edit" v-bind:class="editClass"
+                       class="btn btn-sm">
             Edytuj
-          </button>
+          </router-link>
           <button class="btn btn-sm"
             v-bind:class="deleteClass"
             v-on:click="deleteProduct(p)">
@@ -34,9 +33,9 @@
     </tbody>
   </table>
   <div class="text-center">
-    <button class="btn btn-primary" v-on:click="createNew()">
+    <router-link to="/create" class="btn btn-primary">
       Utwórz nowy
-    </button>
+    </router-link>
   </div>
 </div>
 </template>

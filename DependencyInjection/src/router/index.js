@@ -9,10 +9,15 @@ export default new VueRouter({
     routes: [
         {
             path: "/",
-            component: ProductDisplay
+            component: ProductDisplay,
+            alias: "/list"
         },
         {
             path: "/edit",
+            component: ProductEditor
+        },
+        {
+            path: "/create",
             component: ProductEditor
         },
         {
