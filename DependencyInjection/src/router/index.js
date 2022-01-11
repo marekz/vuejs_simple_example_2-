@@ -14,6 +14,10 @@ export default new VueRouter({
         {
             path: "/edit",
             component: ProductEditor
+        },
+        {
+            path: "*",
+            redirect: "/"
         }
     ]
 })
