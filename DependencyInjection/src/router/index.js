@@ -13,7 +13,7 @@ export default new VueRouter({
             alias: "/list"
         },
         {
-            path: "/:op(create|edit)/:id(\\d+)",
+            path: "/:op(create|edit)/:id(\\d+)?",
             component: ProductEditor
         },
         {
