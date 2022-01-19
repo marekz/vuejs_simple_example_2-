@@ -84,10 +84,5 @@ export default {
       deleteProduct: "deleteProductAction"
     })
   },
-  created() {
-    // this.getProducts();
-    this.setEditButtonColor(false);
-    this.setDeleteButtonColor(false)
-  }
 }
 </script>

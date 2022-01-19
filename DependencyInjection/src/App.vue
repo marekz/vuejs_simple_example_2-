@@ -1,6 +1,16 @@
 <template>
   <div class="container-fluid">
     <div class="row">
+      <div class="col text-center m-2">
+        <ol>
+          <router-link tag="li" to="/list" class="m-1">Lista</router-link>
+          <router-link tag="li" to="/create" class="m-1">Utwórz</router-link>
+          <router-link tag="li" to="/edit" class="m-1">Edytuj</router-link>
+          <router-link tag="li" to="/edit/1" class="m-1">Edytuj Kajak</router-link>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
       <div class="col m-2">
         <router-view></router-view>
       </div>
@@ -9,16 +19,6 @@
 </template>
 
 <script>
-// import ProductDisplay from './components/ProductDisplay';
-// import ProductEditor from "./components/ProductEditor";
-// import ErrorDisplay from "./components/ErrorDisplay";
-// import LoadingMessage from "./components/LoadingMessage";
-// const DataSummary = () => ({
-//   component: import(/* webpackChunkName: "advanced" */"./components/DataSummary"),
-//   loading: LoadingMessage,
-//   delay: 100
-// });
-
 import {
   mapState,
   mapMutations
@@ -26,36 +26,15 @@ import {
 
 export default {
   name: 'App',
-  // components: {
-  //   ProductDisplay,
-  //   ProductEditor,
-  //   ErrorDisplay,
-  //   DataSummary
-  // },
   created() {
     this.$store.dispatch("getProductsAction");
   },
-  // methods: {
-  //   ...mapMutations({
-  //     selectComponent: "nav/selectComponent"
-  //   })
-  // },
-  // computed: {
-  //   ...mapState({
-  //     selected: state => state.nav.selected
-  //   }),
-  //   selectedComponent() {
-  //     switch (this.selected) {
-  //       case "table":
-  //         return ProductDisplay;
-  //       case "editor":
-  //         return ProductEditor;
-  //       case "summary":
-  //         return DataSummary;
-  //     }
-  //
-  //     return ProductDisplay;
-  //   }
-  // }
 }
 </script>
+
+<style scoped>
+  li { text-align: left; color: blue; background-color: lightblue }
+  router-link { text-align: right; color: yellow; background-color: red }
+  .router-link-active { font-size: xx-large; }
+  .router-link-exact-active { font-weight: bolder; }
+</style>
