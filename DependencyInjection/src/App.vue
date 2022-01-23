@@ -2,12 +2,20 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col text-center m-2">
-        <ol>
-          <router-link tag="li" to="/list" class="m-1">Lista</router-link>
-          <router-link tag="li" to="/create" class="m-1">Utwórz</router-link>
-          <router-link tag="li" to="/edit" class="m-1">Edytuj</router-link>
-          <router-link tag="li" to="/edit/1" class="m-1">Edytuj Kajak</router-link>
-        </ol>
+        <div class="btn-group">
+          <router-link tag="button" to="/list" exact-active-class="btn-info" class="btn btn-primary">
+            Lista
+          </router-link>
+          <router-link tag="button" to="/create" exact-active-class="btn-info" class="btn btn-primary">
+            Utwórz
+          </router-link>
+          <router-link tag="button" to="/edit" exact-active-class="btn-info" class="btn btn-primary">
+            Edytuj
+          </router-link>
+          <router-link tag="button" to="/edit/1" exact-active-class="btn-info" class="btn btn-primary">
+            Edytuj kajak
+          </router-link>
+        </div>
       </div>
     </div>
     <div class="row">
