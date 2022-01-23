@@ -4,6 +4,7 @@ import ProductDisplay from "@/components/ProductDisplay";
 import ProductEditor from "@/components/ProductEditor";
 import Preferences from "@/components/Preferences";
 import Products from "@/components/Products";
+import SideBySide from "@/components/SideBySide";
 
 Vue.use(VueRouter);
 export default new VueRouter({
@@ -35,6 +36,24 @@ export default new VueRouter({
         {
             path: "/edit/:id",
             redirect: to => `/products/edit/${to.params.id}`
+        },
+        {
+            path: "/named",
+            component: SideBySide,
+            children: [{
+                path: "tableleft",
+                components: {
+                    left: ProductDisplay,
+                    right: ProductEditor
+                }
+            },
+            {
+                path: "tableright",
+                components: {
+                    left: ProductEditor,
+                    right: ProductDisplay
+                }
+            }]
         },
         {
             path: "*",

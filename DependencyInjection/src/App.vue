@@ -13,6 +13,16 @@
                        class="btn btn-primary">
             Preferencje
           </router-link>
+          <router-link to="/named/tableleft"
+                       class="btn btn-primary"
+                       active-class="btn-info">
+            Tabela po lewej
+          </router-link>
+          <router-link to="/named/tableright"
+                       class="btn btn-primary"
+                       active-class="btn-info">
+            Tabela po prawej
+          </router-link>
         </div>
       </div>
     </div>
