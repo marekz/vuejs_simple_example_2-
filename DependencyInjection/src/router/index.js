@@ -23,4 +23,12 @@ router.beforeEach((to, from, next) => {
     } else {
         next();
     }
-})
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.path === "/named/tableright") {
+        next("/products");
+    } else {
+        next();
+    }
+});
