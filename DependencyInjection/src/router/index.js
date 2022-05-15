@@ -1,17 +1,26 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-// import ProductDisplay from "@/components/ProductDisplay";
-// import ProductEditor from "@/components/ProductEditor";
-// import Preferences from "@/components/Preferences";
-// import Products from "@/components/Products";
-// import SideBySide from "@/components/SideBySide";
 import BasicRouters from "@/router/basicRouters";
 import SideBySideRouters from "@/router/sideBySideRouters";
 Vue.use(VueRouter);
-export default new VueRouter({
+const router = new VueRouter({
     mode: "history",
     routes: [
         ...BasicRouters,
         SideBySideRouters,
+        {
+            path: "*",
+            redirect: "/products"
+        }
     ]
+});
+
+export default router;
+
+router.beforeEach((to, from, next) => {
+    if (to.path === "/preferences" && from.path.startsWith("/named")) {
+        next(false);
+    } else {
+        next();
+    }
 })
