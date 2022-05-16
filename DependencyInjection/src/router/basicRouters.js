@@ -2,7 +2,7 @@ import ProductDisplay from "../components/ProductDisplay";
 import ProductEditor from "../components/ProductEditor";
 import Preferences from "../components/Preferences";
 import Products from "../components/Products";
-import FilteredData from "@/components/FilteredData";
+const FilteredData = () => import("@/components/FilteredData");
 
 export default [{
         path: "/preferences",
