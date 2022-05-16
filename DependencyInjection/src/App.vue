@@ -23,6 +23,10 @@
                        active-class="btn-info">
             Tabela po prawej
           </router-link>
+          <router-link to="/filter/Wszystkie" class="btn btn-primary"
+                       active-class="btn-info">
+            Przefiltrowane dane
+          </router-link>
         </div>
       </div>
     </div>

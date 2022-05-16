@@ -46,7 +46,7 @@ export default {
     }
   },
   methods: {
-    async getDate(route) {
+    async getData(route) {
       if (route.params != null && route.params.category != null) {
         this.category = route.params.category;
       } else {
@@ -64,7 +64,11 @@ export default {
     }
   },
   async beforeRouteEnter(to, from, next) {
-    next(async component => await component.getData(to));
+    if (to.params.category !== "Wszystkie") {
+      next("/filter/Wszystkie");
+    } else {
+      next(async component => await component.getData(to));
+    }
   },
   async beforeRouteUpdate(to, from, next) {
     this.data.splice(0, this.data.length);
