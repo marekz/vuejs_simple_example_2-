@@ -16,9 +16,13 @@ export default new Vuex.Store({
     strict: true,
     state: {
         products: [],
-        selectedProduct: null
+        selectedProduct: null,
+        componentLoading: false
     },
     mutations: {
+        setComponentLoading(currentState, value) {
+            currentState.componentLoading = value;
+        },
         saveProducts(currentState, product) {
             let index = currentState.products.findIndex(p => p.id == product.id);
             if (index == -1) {

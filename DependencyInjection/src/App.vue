@@ -32,20 +32,25 @@
     </div>
     <div class="row">
       <div class="col m-2">
-        <router-view></router-view>
+        <h3 class="bg-warning text-white text-center p-2"
+            v-if="componentLoading"
+        >
+          Komponent ładowania...
+        </h3>
+        <router-view v-show="!componentLoading"></router-view>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {
-  mapState,
-  mapMutations
-} from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: 'App',
+  computed: {
+    ...mapState(["componentLoading"]),
+  },
   created() {
     this.$store.dispatch("getProductsAction");
   },

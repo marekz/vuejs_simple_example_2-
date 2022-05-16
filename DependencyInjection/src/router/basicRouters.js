@@ -3,6 +3,7 @@ import ProductEditor from "../components/ProductEditor";
 import Preferences from "../components/Preferences";
 import Products from "../components/Products";
 const FilteredData = () => import("@/components/FilteredData");
+import dataStore from "../store";
 
 export default [{
         path: "/preferences",
@@ -34,6 +35,10 @@ export default [{
     },
     {
         path: "/filter/:category",
-        component: FilteredData
+        component: FilteredData,
+        beforeEnter: (to, from, next) => {
+            dataStore.commit("setComponentLoading", true);
+            next();
+        }
     }
 ]

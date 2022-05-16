@@ -53,7 +53,7 @@ export default {
         this.category = "Wszystkie"
       }
       let url = baseUrl +
-          (this.category == "Wszystkie" ? "" : `?category=${this.category}`);
+          (this.category === "Wszystkie" ? "" : `?category=${this.category}`);
       this.data.push(...(await Axios.get(url)).data);
       this.loading = false;
     }
@@ -67,7 +67,10 @@ export default {
     if (to.params.category !== "Wszystkie") {
       next("/filter/Wszystkie");
     } else {
-      next(async component => await component.getData(to));
+      next(async component => {
+        component.$store.commit("setComponentLoading", false);
+        await component.getData(to);
+      });
     }
   },
   async beforeRouteUpdate(to, from, next) {
