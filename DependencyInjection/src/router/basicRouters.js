@@ -2,6 +2,7 @@ import ProductDisplay from "../components/ProductDisplay";
 import ProductEditor from "../components/ProductEditor";
 import Preferences from "../components/Preferences";
 import Products from "../components/Products";
+import MessageDisplay from "@/components/MessageDisplay";
 const FilteredData = () => import("@/components/FilteredData");
 import dataStore from "../store";
 
@@ -40,5 +41,24 @@ export default [{
             dataStore.commit("setComponentLoading", true);
             next();
         }
+    },
+    {
+        path: "/hello",
+        component: MessageDisplay,
+        props: {
+            message: "Cześć, koleś"
+        }
+    },
+    {
+        path: "/hello/:text",
+        component: MessageDisplay,
+        props: (route) => ({
+            message: `Cześć ${route.params.text}`
+        })
+    },
+    {
+        path: "/message/:message",
+        component: MessageDisplay,
+        props: true
     }
 ]
