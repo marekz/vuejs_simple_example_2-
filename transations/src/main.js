@@ -1,4 +1,12 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "animate.css/animate.min.css"
+import "popmotion/dist/popmotion.global.min"
+import router from "./router";
 
-createApp(App).mount('#app')
+Vue.config.productionTip = false;
+new Vue({
+    router,
+    render: h => h(App)
+}).$mount('#app')
