@@ -9,7 +9,7 @@
         <div class="col">
           <input class="form-control" v-model.number="second" />
         </div>
-        <div class="col h3"> {{ displayTotal }}</div>
+        <div id="total" class="col h3"> {{ displayTotal }}</div>
       </div>
     </div>
   </div>
@@ -35,12 +35,18 @@ export default {
   },
   watch: {
     total(newVal, oldVal) {
+      let classes = ["animated", "fadeIn"]
+      let totalElement = this.$el.querySelector("#total");
+      totalElement.classList.add(...classes);
       let t = tween({
         from: Number(oldVal),
         to: Number(newVal),
         duration: 250
       });
-      t.start((val) => this.displayTotal = val.toFixed(0));
+      t.start({
+        update: (val) => this.displayTotal = val.toFixed(0),
+        complete: () => totalElement.classList.remove(...classes)
+      });
     }
   }
 }
