@@ -13,8 +13,9 @@
         </router-link>
       </div>
     </div>
-    <transition enter-class="animated fadeIn"
-                leave-active-class="animated fadeOut" mode="out-in">
+    <transition enter-active-class="animated fadeIn"
+                leave-active-class="animated fadeOut" mode="out-in"
+                appear appear-active-class="animated zoomIn">
       <router-view />
     </transition>
   </div>
