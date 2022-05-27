@@ -9,23 +9,38 @@
         <div class="col">
           <input class="form-control" v-model.number="second" />
         </div>
-        <div class="col h3"> {{ total }}</div>
+        <div class="col h3"> {{ displayTotal }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {
+  tween
+} from "popmotion";
+
 export default {
   data: function() {
     return {
       first: 10,
-      second: 20
+      second: 20,
+      displayTotal: 30
     }
   },
   computed: {
     total() {
       return this.first + this.second;
+    }
+  },
+  watch: {
+    total(newVal, oldVal) {
+      let t = tween({
+        from: Number(oldVal),
+        to: Number(newVal),
+        duration: 250
+      });
+      t.start((val) => this.displayTotal = val.toFixed(0));
     }
   }
 }
