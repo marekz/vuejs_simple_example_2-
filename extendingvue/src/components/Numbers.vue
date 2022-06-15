@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import Colorize from "@/directives/colorize";
 export default {
   data: function() {
     return {
@@ -29,9 +28,6 @@ export default {
     total() {
       return this.first + this.second;
     }
-  },
-  directives: {
-    Colorize
   }
 }
 </script>
