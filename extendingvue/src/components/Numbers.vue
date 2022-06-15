@@ -11,7 +11,7 @@
       <div class="col">
         <input class="form-control" v-model.number="second" />
       </div>
-      <div v-colorize="total" class="col h3">= {{ total }}</div>
+      <div v-colorize="total > 50" class="col h3">= {{ total }} </div>
     </div>
   </div>
 </template>
