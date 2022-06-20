@@ -2,6 +2,7 @@
   <div class="m-2">
     <Numbers/>
     <Subtraction/>
+    <maths operation="Divide" firstVal="10" secondVal="20" />
   </div>
 </template>
 

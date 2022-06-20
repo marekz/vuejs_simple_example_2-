@@ -15,19 +15,21 @@
                class="form-control"
                v-model.number="second" />
       </div>
-      <div v-colorize.bg.text="total > 50" class="col h3">= {{ total }} </div>
+      <div v-colorize.bg.text="total > 50" class="col h3">= {{ total | currency }} </div>
     </div>
   </div>
 </template>
 
 <script>
 import mixin from "@/mixins/numbersMixins";
+import Vue from "vue";
+
 export default {
   computed: {
     total() {
-      return this.first + this.second;
+      return Vue.sumValues(this.first, this.second);
     }
   },
-  mixins: [ mixin ]
+  mixins: [mixin]
 }
 </script>
