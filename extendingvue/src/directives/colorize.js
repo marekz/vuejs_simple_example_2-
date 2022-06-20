@@ -5,12 +5,21 @@ export default {
         if (binding.value) {
             if (noMods || binding.modifiers.bg) {
                 el.classList.add(bgClass);
+                el.dataset["bgClass"] = true;
             }
             if (noMods || binding.modifiers.text) {
                 el.classList.add("text-white");
+                el.dataset["textClass"] = true;
             }
         } else {
-            el.classList.remove(bgClass, "text-white");
+            if (el.dataset["bgClass"]) {
+                el.classList.remove(bgClass);
+                el.dataset["bgClass"] = false;
+            }
+            if (noMods || binding.modifiers.text) {
+                el.classList.remove("text-white");
+                el.dataset["textClass"] = false;
+            }
         }
     }
 }
