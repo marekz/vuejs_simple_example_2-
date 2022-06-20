@@ -21,17 +21,13 @@
 </template>
 
 <script>
+import mixin from "@/mixins/numbersMixins";
 export default {
-  data: function() {
-    return {
-      first: 50,
-      second: 20
-    }
-  },
   computed: {
     total() {
       return this.first + this.second;
     }
-  }
+  },
+  mixins: [ mixin ]
 }
 </script>
