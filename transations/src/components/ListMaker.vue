@@ -3,18 +3,23 @@
     <h3 class="bg-info text-white text-center p-2">Moja lista</h3>
     <table class="table table-sm">
       <tr><th>#</th><th>Element</th><th width="20%" colspan="2"></th></tr>
-      <tr v-for="(item, i) in items" v-bind:key=item>
-        <td>{{ i }}</td>
-        <td>{{ item }}</td>
-        <td>
-          <button class="btn btn-sm btn-info" v-on:click="moveItem(i)">
-            Przenieś
-          </button>
-          <button class="btn btn-sm btn-danger" v-on:click="removeItem(i)">
-            Usuń
-          </button>
-        </td>
-      </tr>
+      <transition-group enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut"
+                        move-class="time"
+                        tag="tbody">
+        <tr v-for="(item, i) in items" v-bind:key=item>
+          <td>{{ i }}</td>
+          <td>{{ item }}</td>
+          <td>
+            <button class="btn btn-sm btn-info" v-on:click="moveItem(i)">
+              Przenieś
+            </button>
+            <button class="btn btn-sm btn-danger" v-on:click="removeItem(i)">
+              Usuń
+            </button>
+          </td>
+        </tr>
+      </transition-group>
       <controls v-on:add="addItem" />
     </table>
   </div>
@@ -45,6 +50,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+  .time {
+    transition: all 250ms;
+  }
 </style>
